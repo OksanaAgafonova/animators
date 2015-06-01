@@ -102,5 +102,18 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof User) {
+	    User user = (User) obj;
+	    if (user.getId() == this.id && user.getLogin().equals(this.login)
+		    && user.getName().equals(this.name) && user.getSurname().equals(this.surname)
+		    && user.getEmail().equals(this.email)) {
+		return true;
+	    }
+	}
+	return false;
+    }
         
 }

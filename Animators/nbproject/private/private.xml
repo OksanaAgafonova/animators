@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Оксана/Documents/NetBeansProjects/Animators/src/logic/Personage.java</file>
-            <file>file:/C:/Users/Оксана/Documents/NetBeansProjects/Animators/src/logic/User.java</file>
-            <file>file:/C:/Users/Оксана/Documents/NetBeansProjects/Animators/src/logic/Client.java</file>
-            <file>file:/C:/Users/Оксана/Documents/NetBeansProjects/Animators/src/logic/Zakaz.java</file>
-            <file>file:/C:/Users/Оксана/Documents/NetBeansProjects/Animators/src/logic/Admin.java</file>
-            <file>file:/C:/Users/Оксана/Documents/NetBeansProjects/Animators/src/main.java</file>
+            <file>file:/D:/Оксана/Магистратура/2%20семестр/Проектирование%20архитектуры%20ПО/Проект/animators/Animators/src/db/UserMapper.java</file>
+            <file>file:/D:/Оксана/Магистратура/2%20семестр/Проектирование%20архитектуры%20ПО/Проект/animators/Animators/src/Service/UserService.java</file>
+            <file>file:/D:/Оксана/Магистратура/2%20семестр/Проектирование%20архитектуры%20ПО/Проект/animators/Animators/src/db/AbstractMapper.java</file>
+            <file>file:/D:/Оксана/Магистратура/2%20семестр/Проектирование%20архитектуры%20ПО/Проект/animators/Animators/src/logic/User.java</file>
+            <file>file:/D:/Оксана/Магистратура/2%20семестр/Проектирование%20архитектуры%20ПО/Проект/animators/Animators/src/db/UserTypesEnum.java</file>
+            <file>file:/D:/Оксана/Магистратура/2%20семестр/Проектирование%20архитектуры%20ПО/Проект/animators/Animators/src/db/ConnectionManager.java</file>
         </group>
     </open-files>
 </project-private>
