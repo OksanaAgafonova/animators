@@ -5,6 +5,8 @@
  */
 package logic;
 
+import db.UserMapper;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -115,5 +117,39 @@ public class User {
 	}
 	return false;
     }
-        
+    
+     public static User login(String login, String password) throws SQLException {
+	UserMapper mapper = new UserMapper();
+	User user = mapper.findByParam(UserMapper.UserParams.Login, login);
+	if (user == null ) {
+	    return null;
+	}
+	return user;
+    }
+     
+    public static User register(String login, String name, String surname, String email, String password) 
+	    throws SQLException, IllegalArgumentException {
+	UserMapper mapper = new UserMapper();
+	if (mapper.findByParam(UserMapper.UserParams.Login, login) != null) {
+	    return null;
+	}
+	mapper.insert(new User(0, name, surname, email, login, password, null));
+	return mapper.findByParam(UserMapper.UserParams.Login, login);
+    }
+    
+    public static int addUser(User user) throws SQLException {
+	return new UserMapper().insert(user);
+    }
+    
+     public static void removeUser(Long userId) throws SQLException {
+	new UserMapper().delete(userId);
+    }
+    
+    public static void removeUser(User user) throws SQLException {
+	new UserMapper().delete(user);
+    }
+    
+    public static void updateUser(User user) throws SQLException {
+	new UserMapper().update(user);
+    }
 }

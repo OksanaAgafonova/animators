@@ -9,11 +9,10 @@ package logic;
  *
  * @author Оксана
  */
-public class Client extends User {
-
-    public Client(long id, String name, String surname, String address, String email,
+public class Customer extends User{
+    
+    public Customer(long id, String name, String surname, String address, String email,
             String login, String password) throws IllegalArgumentException {
         super(id, name, surname, address, email, login, password);
     }
-    
-}
+    }

@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import logic.*;
 
 /**
@@ -25,14 +27,64 @@ public class UserMapper extends AbstractMapper<User>{
     public UserMapper() {
     }
     
+     public User findByParam(UserParams param, String value) throws SQLException {
+	String query = "SELECT * FROM Users WHERE " + param.toString() + " = '" + value + "'";
+	
+	List<User> users;
+	try (Connection conn = getConnection();
+		Statement statement = conn.createStatement();
+		ResultSet rset = statement.executeQuery(query)) {
+	    users = getElementsFromResultSet(rset);
+	}
+	    
+	if (users == null || users.isEmpty()) {
+	    return null;
+	}
+
+	User user = users.get(0);
+	//user.getId();
+
+	return user;
+    }
+    
+         @Override
+      protected List<User> getElementsFromResultSet(ResultSet rset) throws SQLException {
+	List<User> users = new ArrayList<>();
+	while (rset.next()) {
+	    long id = rset.getLong("Id");
+	    int type = rset.getInt("Type");
+	    String name = rset.getString("Name");
+	    String surname = rset.getString("Surname");
+	    String email = rset.getString("Email");
+	    String login = rset.getString("Login");
+	    String password = rset.getString("Password");
+
+	    User user;
+	    if (type == UserTypesEnum.User.getValue()) {
+		user = new User(id, name, surname, email, login, "", null);
+	    } else if (type == UserTypesEnum.Admin.getValue()) {
+		user = new Admin(id, name, surname, email, login, "", null);
+	    } else if (type == UserTypesEnum.Customer.getValue()) {
+		user = new Customer(id, name, surname, email, login, "", null);
+	    } else if (type == UserTypesEnum.Personage.getValue()) {
+		user = new Personage(id, name, surname, email, login, "", null);
+	    } else {
+		continue;
+	    }
+	    user.setPassword(password);
+	    users.add(user);
+	}
+	return users;
+    }
+     
     @Override
    public int insert(User user) throws SQLException {
 	int userType;
 	if (user instanceof Admin) {
 	    userType = UserTypesEnum.Admin.getValue();
 	} 
-        else if (user instanceof Client) {
-	    userType = UserTypesEnum.Client.getValue();
+        else if (user instanceof Customer) {
+	    userType = UserTypesEnum.Customer.getValue();
 	}
         else if (user instanceof Personage) {
 	    userType = UserTypesEnum.Personage.getValue();
@@ -87,8 +139,8 @@ public class UserMapper extends AbstractMapper<User>{
         if (user instanceof Admin) {
 	    userType = UserTypesEnum.Admin;
 	} 
-        else if (user instanceof Client) {
-	    userType = UserTypesEnum.Client;
+        else if (user instanceof Customer) {
+	    userType = UserTypesEnum.Customer;
 	}
         else if (user instanceof Personage) {
 	    userType = UserTypesEnum.Personage;
@@ -126,8 +178,23 @@ public class UserMapper extends AbstractMapper<User>{
 	}
     }
 
-    @Override
+       @Override
     public User find(long id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	String query = "SELECT * FROM Users WHERE Id = ?";
+	
+	List<User> users;
+	try (Connection conn = getConnection(); PreparedStatement statement = conn.prepareStatement(query)) {
+	    statement.setLong(1, id);
+	    try (ResultSet rset = statement.executeQuery()) {
+		users = getElementsFromResultSet(rset);
+	    }
+	}
+	    
+	if (users == null || users.isEmpty()) {
+	    return null;
+	}
+
+	User user = users.get(0);
+	return user;
     }
 }

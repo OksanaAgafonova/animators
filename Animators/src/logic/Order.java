@@ -5,6 +5,8 @@
  */
 package logic;
 
+import db.OrderMapper;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
 
@@ -12,8 +14,8 @@ import java.util.Date;
  *
  * @author Оксана
  */
-public class Zakaz {
-    protected long idZakaza;
+public class Order {
+    protected long idOrder;
     protected long idPersonaja;
     protected String address;
     protected Date date;
@@ -22,10 +24,10 @@ public class Zakaz {
     protected long sum;
     protected String status;
     
-public Zakaz (long idZakaza, String address,Date date, Time time, long minut,
+public Order (long idOrder, String address,Date date, Time time, long minut,
         long sum, String status){
    
-    this.idZakaza = idZakaza;
+    this.idOrder = idOrder;
     this.address = address;
     this.date = date;
     this.time = time;
@@ -33,8 +35,25 @@ public Zakaz (long idZakaza, String address,Date date, Time time, long minut,
     this.sum = sum;
     this.status = status;
 }    
-public long getIdZakaza() {
-        return idZakaza;
+
+ public static int addOrder(Order order) throws SQLException {
+	return new OrderMapper().insert(order);
+    }
+    
+     public static void removeOrder(Long orderId) throws SQLException {
+	new OrderMapper().delete(orderId);
+    }
+    
+    public static void removeOrder(Order order) throws SQLException {
+	new OrderMapper().delete(order);
+    }
+    
+    public static void updateUser(Order order) throws SQLException {
+	new OrderMapper().update(order);
+    }
+
+public long getIdOrder() {
+        return idOrder;
     }
 
     public String getAddress() {
@@ -76,5 +95,10 @@ public long getIdZakaza() {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public Time getTime() {
+         return time;
+    }
    
+    
 }

@@ -6,7 +6,9 @@
 package db;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -21,7 +23,7 @@ public abstract class AbstractMapper<T> {
     public abstract void update(T object) throws SQLException;
     public abstract void delete(T object) throws SQLException;
     public abstract T find(long id) throws SQLException;
-    //protected abstract List<T> getElementsFromResultSet(ResultSet rset) throws SQLException;
+    protected abstract List<T> getElementsFromResultSet(ResultSet rset) throws SQLException;
     
     protected Connection getConnection() throws SQLException {
 	return new ConnectionManager().getConnection();
