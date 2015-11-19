@@ -5,14 +5,13 @@
  */
 package db;
 
-import logic.Customer;
-
 /**
  *
  * @author Оксана
  */
+
 public enum UserTypesEnum {
-    User(0, "Пользователь"), Admin(1, "Администратор"), Customer(2, "Клиент"), Personage(3, "Персонаж");
+    Admin(0, "Администратор"), Customer(1, "Клиент"), Personage(2, "Персонаж");
     
     private int value;
     private String description;
@@ -36,3 +35,4 @@ public enum UserTypesEnum {
     }
     
 }
+

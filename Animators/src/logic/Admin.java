@@ -11,9 +11,11 @@ package logic;
  */
 public class Admin extends User {
 
-    public Admin(long id, String name, String surname, String address, String email, 
-            String login, String password) throws IllegalArgumentException {
-        super(id, name, surname, address, email, login, password);
-    }
+    public Admin(){}
     
+    public Admin(int type, String name, String surname, String adress, String email, 
+            String login, String password) throws IllegalArgumentException {
+        super(type, name, surname, "", adress, email, login, password);
+    }
 }
+

@@ -11,8 +11,11 @@ package logic;
  */
 public class Customer extends User{
     
-    public Customer(long id, String name, String surname, String address, String email,
+    public Customer(){}
+   
+    public Customer(int type, String name, String surname, String adress, String email,
             String login, String password) throws IllegalArgumentException {
-        super(id, name, surname, address, email, login, password);
+        super(type, name, surname, "", adress, email, login, password);
     }
-    }
+}
+

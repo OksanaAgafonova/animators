@@ -5,22 +5,20 @@
  */
 package db;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 import logic.*;
+
 /**
  *
  * @author Оксана
  */
+
 public class PersonageMapper extends AbstractMapper<Personage>{
-    
     public enum PersonageParams {
-	name("Name");
+	
+        name("Name");
 		
 	private String value;
 	
@@ -32,9 +30,9 @@ public class PersonageMapper extends AbstractMapper<Personage>{
 	    return value;
 	}
     }
-    
+   
     public Personage findByParam(PersonageParams param, String value) throws SQLException {
-	String query = "SELECT * FROM Stores WHERE " + param.getValue() + " = '" + value + "'";
+	/*String query = "SELECT * FROM Stores WHERE " + param.getValue() + " = '" + value + "'";
 	
 	try (Connection conn = getConnection();
 		PreparedStatement statement = conn.prepareStatement(query.toString());
@@ -44,10 +42,14 @@ public class PersonageMapper extends AbstractMapper<Personage>{
 		return stores.get(0);
 	    }
 	    return null;
-	}
+	}*/
+    return null;
     }
+    
+    public int insert(Personage personage){
+        return 1;}
 
-    @Override
+   /* @Override
       public int insert(Personage personage) throws SQLException {
 	try (Connection conn = getConnection(); PreparedStatement statement = getInsertStatement(personage, conn)) {
 	    statement.executeUpdate();
@@ -78,9 +80,9 @@ public class PersonageMapper extends AbstractMapper<Personage>{
 	    statement.close();
 	    throw ex;
 	}
-    }
+    }*/
 
-    @Override
+   // @Override
     public void update(Personage object) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -90,7 +92,7 @@ public class PersonageMapper extends AbstractMapper<Personage>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+   // @Override
     public Personage find(long id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -101,3 +103,4 @@ public class PersonageMapper extends AbstractMapper<Personage>{
     }
     
 }
+
