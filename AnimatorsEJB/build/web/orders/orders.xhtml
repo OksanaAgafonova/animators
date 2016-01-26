@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>All Orders</title>
+    </h:head>
+    <h:body>
+        <h3>All Orders</h3>
+        <div>
+            <h:form>
+                <h:dataTable  cellpadding="1" cellspacing="0"  border="1" style="margin-bottom:20px" value="#{serviceBean.getAllOrders()}" var="order">
+                    <h:column>
+                        <f:facet name="header">id</f:facet>
+                            #{order.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Personage</f:facet>
+                            #{order.idpersonage.namepersonage}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Customer</f:facet>
+                            #{order.idcustomer.surname}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Address</f:facet>
+                            #{order.adress}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">The number of minutes</f:facet>
+                            #{order.minut}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Sum</f:facet>
+                            #{order.summa}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Order status</f:facet>
+                            #{order.status}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText value="#{order.date}" >
+                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                        </h:outputText>
+
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Time</f:facet>
+                        <h:outputText value="#{order.time}" >
+                            <f:convertDateTime pattern="hh:mm" />
+                        </h:outputText>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> </f:facet>
+                        <h:link outcome="/orders/editOrder.xhtml" includeViewParams="true" >
+                            <f:param name="id" value="#{order.id}"/>
+                            <h:graphicImage value="/resources/edit.png" />
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> </f:facet>
+                        <!--<h:link outcome="/personage/personages.xhtml" includeViewParams="true" >-->
+                            <!--<f:param name="id" value="#{u.id}"/>-->
+                        <!--#{u.id}-->
+                        <!--<h:graphicImage  value="/resources/delete.png" />-->
+                        <h:commandButton action="#{serviceBean.deleteOrder(order)}" value="-" />
+
+                        <!--</h:link>-->
+                    </h:column>
+
+                    <!--                <h:column>
+                                            <f:facet name="header"> </f:facet>
+                                            <h:link outcome="/personage/editPersonage.xhtml" includeViewParams="true" >
+                                                <f:param name="id" value="#{u.id}"/>
+                                                <h:graphicImage value="/resources/show.png" />
+                                            </h:link>
+                                    </h:column>-->
+
+                </h:dataTable>
+            </h:form>
+        </div>
+        <br/><br/>
+        <h:panelGrid columns="3">
+            <h:button value="  Back  " outcome="/personage/personages.xhtml" />
+            <h:button value=" Add Order " outcome="/orders/addNewOrder.xhtml" />
+        </h:panelGrid>
+    </h:body>
+</html>
+
