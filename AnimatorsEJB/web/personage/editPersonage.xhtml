@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+   
+    <h:head>
+        <title>EDITING PERSONAGE</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <f:metadata> 
+                <f:viewParam name="id" value="#{editPersonageBean.id}" /> 
+            </f:metadata>
+            
+                <h:panelGrid columns="3" cellpadding="5">
+                    <br/>
+                    <h:outputLabel value="EDITING PERSONAGE" />
+                    <br/><br/>
+                    
+                    <h:outputLabel value="NAME" />
+                    <h:inputText id="name" value="#{editPersonageBean.user.name}" 
+                                 required="true" size="20" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    
+                    <h:message for="name" class="error_message" />
+                    
+                    
+                    <h:outputLabel value="SURNAME" />
+                    <h:inputText id="surname" value="#{editPersonageBean.user.surname}" 
+                                 required="true" size="20" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="surname" class="error_message" />
+                    
+                    <h:outputLabel value="NAMEPERSONAGE" />
+                    <h:inputText id="namepersonage" value="#{editPersonageBean.user.namepersonage}" 
+                                 required="true" size="20" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="namepersonage" class="error_message" />
+                    
+                    <h:outputLabel value="ADRESS" />
+                    <h:inputText id="adress" value="#{editPersonageBean.user.adress}" 
+                                 required="true" size="20" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="adress" class="error_message" />
+                    
+                    <h:outputLabel value="EMAIL" />
+                    <h:inputText id="email" value="#{editPersonageBean.user.email}" 
+                                 required="true" size="20" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="email" class="error_message" />
+                    
+                    <h:outputLabel value="LOGIN" />
+                    <h:inputText id="login" value="#{editPersonageBean.user.login}" 
+                                 required="true" size="20" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="login" class="error_message" />
+                    
+                    <h:outputLabel value="PASSWORD" />
+                    <h:inputText id="password" value="#{editPersonageBean.user.password}" 
+                                 required="true" size="20" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="password" class="error_message" />
+                    <br/>
+                </h:panelGrid>
+                <h:panelGrid columns="2" >
+                    <h:button value="Back" outcome="/personage/personages.xhtml" />
+                    <h:commandButton action="#{editPersonageBean.save()}" value="  Save  "/> 
+                </h:panelGrid>
+            </h:form>
+    </h:body>
+</html>
+
