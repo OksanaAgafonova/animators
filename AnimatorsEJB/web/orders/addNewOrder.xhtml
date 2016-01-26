@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <h:head>
+        <title>ADDING A NEW ORDER</title>
+    </h:head>
+    <body>
+        <div>
+            <h:form>
+                
+                <h:panelGrid columns="3" cellpadding="5">
+                    <br/>
+                    <h1><h:outputLabel value="ADDING A NEW ORDER" /></h1>
+                    <br/><br/>
+                    
+                    <h:outputLabel value="PERSONAGE: " />
+                    <h:selectOneMenu value="#{addNewOrderBean.order.idpersonage}"
+                                    converter="#{personageConverterBean}">
+                        <f:selectItems value="#{serviceBean.allPersonage}" var="p"
+                                       itemLabel="#{p.namepersonage}" itemValue="#{p}" />
+                    </h:selectOneMenu>
+                    <h:message for="namepersonage" class="error_message" />
+                    
+                    <h:outputLabel value="CUSTOMER: " />
+                    <h:selectOneMenu value="#{addNewOrderBean.order.idcustomer}"
+                                    converter="#{personageConverterBean}">
+                        <f:selectItems value="#{serviceBean.allCustomer}" var="c"
+                                       itemLabel="#{c.surname}" itemValue="#{c}" />
+                    </h:selectOneMenu>
+                    <h:message for="surname" class="error_message" />
+                                       
+                    <h:outputLabel value="ORDER ADDRESS" />
+                    <h:inputText id="adress" value="#{addNewOrderBean.order.adress}" 
+                                 required="true" size="20" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="adress" class="error_message" />
+                    
+                    <h:outputLabel value="THE NUMBER OF MINUTES" />
+                    <h:inputText id="minut" value="#{addNewOrderBean.order.minut}" 
+                                 required="true" size="5" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="minut" class="error_message" />
+                    
+                    <h:outputLabel value="ORDER PRICE" />
+                    <h:inputText id="summa" value="#{addNewOrderBean.order.summa}" 
+                                 required="true" size="8" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="summa" class="error_message" />
+                    
+                    <h:outputLabel value="ORDER STATUS" />
+                    <h:selectOneMenu value="#{addNewOrderBean.order.status}">
+                        <f:selectItem itemValue="На рассмотрении"/>
+                        <f:selectItem itemValue="Принят"/>
+                        <f:selectItem itemValue="Выполнен"/>
+                        <f:selectItem itemValue="Отклонен"/>
+                    </h:selectOneMenu>
+                    <h:message for="status" class="error_message" />
+                    
+                    <h:outputLabel value="ORDER DATE" />
+                    
+                    <h:inputText id="date" value="#{addNewOrderBean.order.date}" pt:placeholder="01-01-2015"
+                                 required="true" size="10" requiredMessage="Please, fill this field.">  
+                        <f:convertDateTime pattern="dd-MM-yyyy"/> 
+                    </h:inputText>
+                    <h:message for="date" class="error_message" />
+                    
+                    <h:outputLabel value="ORDER TIME" />
+                    <h:inputText id="time" value="#{addNewOrderBean.order.time}" pt:placeholder="00:00"
+                                 required="true" size="6" requiredMessage="Please, fill this field."> 
+                        <f:convertDateTime pattern="hh:mm"/>
+                    </h:inputText>
+                    <h:message for="time" class="error_message" />
+                    <br/>
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" >
+                    <h:button value="Back" outcome="/orders/orders.xhtml" />
+                    <h:commandButton action="#{addNewOrderBean.create(loginBean.currentUser)}" value="  Add new order "/>
+                </h:panelGrid>
+            </h:form>
+        </div>
+    </body>
+</html>
+
