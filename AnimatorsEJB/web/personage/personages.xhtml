@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>All Personages</title>
+    </h:head>
+    <h:body>
+        <h3>All Personages</h3>
+        <div>
+            <form action="personages.xhtml">
+                <h:outputLabel value="Search Personage:"/>
+                <h:inputText id="name" />
+                <button type="submit">Find</button>
+            </form>
+
+            <h:form>
+                <br/>
+                <h:dataTable cellpadding="1" cellspacing="0"  border="1" style="margin-bottom:20px" value="#{serviceBean.getAllPersonage(param['name'])}" var="u">
+                    <h:column>
+                        <f:facet name="header">id</f:facet>
+                            #{u.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                            #{u.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Surname</f:facet>
+                            #{u.surname}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">namePersonage</f:facet>
+                            #{u.namepersonage}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                            #{u.email}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> </f:facet>
+                        <h:link outcome="/personage/editPersonage.xhtml" includeViewParams="true" >
+                            <f:param name="id" value="#{u.id}"/>
+                            <h:graphicImage value="/resources/edit.png" />
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"> </f:facet>
+                        <!--<h:link outcome="/personage/personages.xhtml" includeViewParams="true" >-->
+                            <!--<f:param name="id" value="#{u.id}"/>-->
+                        <!--#{u.id}-->
+                        <!--<h:graphicImage  value="/resources/delete.png" />-->
+                        <h:commandButton action="#{serviceBean.deleteUser(u)}" value="-" />
+
+                        <!--</h:link>-->
+                    </h:column>
+
+                    <!--                <h:column>
+                                            <f:facet name="header"> </f:facet>
+                                            <h:link outcome="/personage/editPersonage.xhtml" includeViewParams="true" >
+                                                <f:param name="id" value="#{u.id}"/>
+                                                <h:graphicImage value="/resources/show.png" />
+                                            </h:link>
+                                    </h:column>-->
+
+                </h:dataTable>
+            </h:form>
+        </div>
+        <br/><hr/><br/>
+        <h:panelGrid columns="3">
+            <h:button value="Add Personage" outcome="/personage/addNewPersonage.xhtml" />
+<!--            <h:button value="Show" outcome="/personage/editPersonage.xhtml" />-->
+            <h:button value="Order list" outcome="/orders/orders.xhtml" />
+        </h:panelGrid>
+    </h:body>
+</html>
+
